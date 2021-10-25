@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=, initial-scale=1.0">
+	<title>Document</title>
+	<script>
+		var code = "";
+		function addToCode(number) {
+			code += number;
+			document.getElementById("output").innerHTML = code;
+		}
+		function resetCode() {
+			code = "";
+			document.getElementById("output").innerHTML = code;
+		}
+	</script>
+</head>
+
+<body style="background: white;">
+	<div id="output" style="min-height: 20px;"></div>
+
+	</div>
+	<table>
+		<tr>
+			<td>
+				<button onclick="addToCode(this.innerHTML)">1</button>
+			</td>
+			<td>
+				<button onclick="addToCode(this.innerHTML)">2</button>
+			</td>
+			<td>
+				<button onclick="addToCode(this.innerHTML)">3</button>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button onclick="addToCode(this.innerHTML)">4</button>
+			</td>
+			<td>
+				<button onclick="addToCode(this.innerHTML)">5</button>
+			</td>
+			<td>
+				<button onclick="addToCode(this.innerHTML)">6</button>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button onclick="addToCode(this.innerHTML)">7</button>
+			</td>
+			<td>
+				<button onclick="addToCode(this.innerHTML)">8</button>
+			</td>
+			<td>
+				<button onclick="addToCode(this.innerHTML)">9</button>
+			</td>
+		</tr>
+	</table>
+	<button onclick="resetCode()">reset</button>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+</head>
+
+<body onload="testOnLoad()">
+	<p>Ferdighet 2a - Alternative eventhandlere: onchange osv.</p>
+	<input type="text" onchange="testOnChange()" oninput="testOnInput()"
+		onkeydown="testOnKeyDown()" />
+	<h3 onmouseover="testOnMouseOver()" onmouseout="testOnMouseOut()"
+		ondblclick="testOnDblClick()" oncontextmenu="testOnContextMenu()"
+		onkeydown="testOnKeyDown()">
+		Test test test
+	</h3>
+	<h2 id="info"></h2>
+
+	<a href="https://www.w3schools.com/jsref/dom_obj_event.asp">
+		Mer informasjon her
+	</a>
+	<script>
+		function testOnLoad() {
+			console.log("onload");
+		}
+
+		function testOnChange() {
+			concole.log("onchange");
+		}
+
+		function testOnInput() {
+			concole.log("oninput");
+		}
+
+		function testOnMouseOver() {
+			concole.log("onmouseover");
+		}
+
+		function testOnMouseOut() {
+			concole.log("onmouseout");
+		}
+
+		function testOnDblClick() {
+			concole.log("ondblclick");
+		}
+
+		function testOnContextMenu() {
+			concole.log("oncontextmenu");
+		}
+
+		function testOnKeyDown() {
+			concole.log("onkeydown");
+		}
+	</script>
+</body>
+
+</html>
