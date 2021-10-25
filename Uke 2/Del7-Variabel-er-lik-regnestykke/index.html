@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<input id="widthSlider" type="range" min="1" max="1000" step="1"
+		oninput="updateDiv()" value="200" />
+	<input id="heightSlider" type="range" min="1" max="1000" step="1"
+		oninput="updateDiv()" value="200" />
+	<div id="squareDiv"></div>
+	<div id="debugDiv"></div>
+
+	<script>
+		var widthSlider = document.getElementById('widthSlider');
+		var heightSlider = document.getElementById("heightSlider");
+		var squareDiv = document.getElementById("squareDiv");
+		var debugDiv = document.getElementById("debugDiv");
+
+		updateDiv();
+
+		function updateDiv() {
+			squareDiv.innerHTML = '<div style="'
+				+ 'background-color: blue;'
+				+ 'width: ' + widthSlider.value + 'px;'
+				+ 'height: ' + heightSlider.value + 'px;'
+				+ '">'
+				+ 'Areal: ' + widthSlider.value + '*' + heightSlider.value + ' = '
+				+ widthSlider.value * heightSlider.value
+				+ '<br />Omkrets: 2*' + widthSlider.value + '+' + '2*' + heightSlider.value
+				+ ' = ' + (2*widthSlider.value + 2*heightSlider.value)
+				+ '</div>';
+			debugDiv.innerText = squareDiv.innerHTML;
+		}
+	</script>
+</body>
+
+</html>
