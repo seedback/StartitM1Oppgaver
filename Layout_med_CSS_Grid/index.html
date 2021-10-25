@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+			font-family: sans-serif;
+		}
+
+		div.page {
+			height: 100vh;
+			background-color: lightgreen;
+			display: grid;
+			grid-template-columns: 200px 1fr;
+			grid-template-rows: 75px 1fr 55px;
+			grid-template-areas:
+				'header	header'
+				'menu		mainContent'
+				'footer		footer';
+		}
+
+		div.header {
+			background-color: aqua;
+			grid-area: header;
+		}
+
+		div.menu {
+			background-color: lightcoral;
+			grid-area: menu;
+			padding-left: 20px;
+			color: green;
+		}
+
+		div.menu a:visited{
+				color:orange;
+			}
+
+		div.mainContent {
+			background-color: blanchedalmond;
+			grid-area: mainContent;
+			padding-left: 20px;
+		}
+
+		div.footer {
+			background-color: lightgrey;
+			grid-area: footer;
+			padding-right: 20px;
+		}
+
+		.content {
+			max-width: 80ch;
+		}
+
+		@media only screen and (max-width: 950px) {
+			div.page {
+				grid-template-columns: 100px 1fr;
+			}
+		}
+
+		@media only screen and (max-width:400px) {
+			div.page {
+				grid-template-columns: 1fr;
+				grid-template-rows: 10vh 1fr 75px;
+				grid-template-areas:
+					'header'
+					'menu'
+					'mainContent'
+					'footer';
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div class="page">
+		<div class="header">
+			<h1 style="text-align:center;"><b>My Website</b></h1>
+		</div>
+		<div class="menu">
+			<h4>Menu</h4>
+			<p>
+				<a href="index.html">Home</a>
+			</p>
+			<p>
+				<a href="" alt="Denne linken fører ingen steds">About</a>
+			</p>
+			<p>
+				<a href="" alt="Denne linken fører ingen steds">Contact</a>
+			</p>
+		</div>
+		<div class="mainContent">
+			<h2>Home Page</h2>
+			<p class="content">
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nisl elit, eleifend euismod lectus eu,
+				elementum ultricies velit. Nullam eu nulla a lectus egestas venenatis. Lorem ipsum dolor sit amet, consectetur
+				adipiscing elit. Nullam sit amet lorem tincidunt, ultricies leo vel, volutpat velit. Maecenas ut eros dignissim,
+				finibus dolor et, porta magna. Aenean eu semper mauris. Interdum et malesuada fames ac ante ipsum primis in
+				faucibus. Aliquam nec ex lacinia, gravida dolor luctus, consequat ligula. Ut ornare facilisis justo vitae
+				placerat. Nunc dapibus sed velit at dapibus.
+			</p>
+			<p class="content">
+				Sed efficitur mi nibh, non luctus tellus accumsan eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+				Proin arcu nibh, placerat at eros vel, vestibulum sodales nisi. Integer eu eros mauris. Donec eleifend semper
+				commodo. Integer tincidunt vitae sapien a consectetur. Nam ac neque sit amet nulla accumsan scelerisque a id
+				elit.
+			</p>
+			<p class="content">
+				Etiam a euismod massa, in bibendum tortor. Sed at leo nisl. Nam eget mollis urna, ac elementum metus. Curabitur
+				eget ultrices nunc, in sagittis sem. Suspendisse eu velit nec est accumsan vulputate nec at risus. Pellentesque
+				lectus mauris, sollicitudin in neque vel, pharetra euismod purus. Etiam aliquet molestie neque, a tempor mi
+				varius lacinia. Donec sagittis vulputate mi, eget venenatis mauris faucibus lobortis. Duis elementum erat a urna
+				fermentum, a venenatis tellus dapibus. Curabitur iaculis vestibulum est, eu bibendum felis maximus sagittis.
+				Nulla euismod sodales ex, sed porta neque pharetra in. Suspendisse ante est, ultrices vel fringilla in, rutrum
+				quis augue. Suspendisse ac consequat quam. Proin accumsan ipsum ex, et laoreet elit maximus id. Quisque ligula
+				dui, dignissim vel magna quis, suscipit feugiat ipsum.
+			</p>
+			<p class="content">
+				Aliquam aliquet vel odio quis eleifend. Duis elementum massa eros, non finibus arcu feugiat vel. Ut lectus
+				justo, egestas ac massa sed, ultricies semper lacus. Pellentesque facilisis elit et felis sagittis blandit.
+				Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas volutpat
+				finibus ante non pharetra. In odio leo, mattis at ornare eget, sodales eu neque. Nullam placerat rhoncus
+				pharetra. Mauris dignissim feugiat commodo. Ut faucibus purus porta, commodo felis sed, efficitur nunc. Proin
+				vitae tristique augue. Morbi cursus lacus id interdum placerat.
+			</p>
+			<p class="content">
+				Suspendisse in sem orci. Pellentesque at nisi diam. Donec ac fermentum massa. Proin blandit neque tortor, in
+				sollicitudin diam volutpat sed. Donec interdum elit egestas, maximus sem nec, efficitur ex. Vivamus ut velit et
+				dui imperdiet suscipit in at ipsum. Morbi posuere vitae massa nec pretium. Duis rhoncus, risus vitae pharetra
+				sagittis, ipsum elit facilisis ligula, vel rhoncus orci magna non orci. In bibendum augue massa, in dictum
+				ligula porttitor eget. Nullam id orci mauris. Phasellus nec tempus lacus. Vestibulum ullamcorper libero at nunc
+				hendrerit, id condimentum sapien mollis. Nam euismod metus vestibulum, mollis magna at, dictum nisi.
+			</p>
+			<p class="content">
+
+			</p>
+		</div>
+		<div class="footer">
+			<h3 style="text-align: right;">
+				Copyright &copy; 2021 Alexander Bøhler
+			</h3>
+		</div>
+	</div>
+</body>
+
+</html>
