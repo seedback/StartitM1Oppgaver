@@ -1,0 +1,40 @@
+<!--
+Lag en webside som viser en div med tilfeldig bredde, høyde og
+border-størrelse. Vis i tillegg som tekst hvilke tilfeldige verdier som brukes.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<div id="randomDiv"></div>
+	<div id="textDiv"></div>
+
+	<script>
+		var randomDiv = document.getElementById('randomDiv');
+		var textDiv = document.getElementById('textDiv');
+
+		var randomWidth = (100 + Math.floor(Math.random() * 400));
+		var randomHeight = (100 + Math.floor(Math.random() * 400));
+		var randomBorder = (Math.random() * 20).toFixed(3);
+
+		randomDiv.innerHTML = '<div style="'
+		+ 'background: blue;'
+		+ 'width: ' + randomWidth + 'px;'
+		+ 'height: ' + randomHeight + 'px;'
+		+ 'border: solid black ' + randomBorder + 'px;'
+		+ '">Width: ' + randomWidth
+		+ '<br/>Height: ' + randomHeight
+		+ '<br/>Border: ' + randomBorder
+		+'</div>'
+	</script>
+</body>
+
+</html>
