@@ -1,24 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
-
-	
+	<meta charset="utf-8" />
+	<title></title>
 </head>
 
-<body>
-	<!-- Av en eller annen grunn kjører ikke onload-en her når siden lastes inn -->
-	<div id="a" onload="doneLoading()" onclick="doneLoading()">a</div>
+<body onload="bodyLoad()">
+	<p>Ferdighet 5 - Kode som kjøres når siden lastes vs kode i en funksjon</p>
+	<button onclick="doClick()">Trykk her</button>
+	Prøv også å reloade siden.
+	<div id="a"></div>
+	<div id="b"></div>
+	<!-- Samme bilde flere ganger for å øke laste tiden -->
+	<img src="luftballong.jpg" alt="Bloons TD?" />
+	<img src="vindu.jpg" alt="Bloons TD?" />
+	<img src="is.jpg" alt="Bloons TD?" />
+	<img src="maneter.jpg" alt="Bloons TD?" />
+	<img src="bølger.jpg" alt="Bloons TD?" />
 
 	<script>
-		console.log(new Date().toTimeString());
+		// La til millisekunder for å faktisk kunne se ett utslag, selv med 5 store bilder
+		document.getElementById('a').innerHTML = '' + new Date().toTimeString() + " : " + new Date().getMilliseconds();
 
-		function doneLoading() {
-			console.log(new Date().toTimeString());
+		function doClick() {
+			alert('Dette skjer i funksjonen doClick');
+		}
+
+		function bodyLoad() {
+			document.getElementById('b').innerHTML = '' + new Date().toTimeString() + " : " + new Date().getMilliseconds();
 		}
 	</script>
 </body>
