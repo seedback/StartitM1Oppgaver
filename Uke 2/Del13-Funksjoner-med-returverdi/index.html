@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+	<style>
+		div {
+			position: absolute;
+		}
+	</style>
+</head>
+
+<body>
+	<p>Ferdighet 12 - Funksjoner med returverdi</p>
+	<script>
+		tilfeldigFirkant();
+
+		function tilfeldigFirkant() {
+			var endX = tilfeldigTall(window.innerWidth * 0.2, window.innerWidth);
+			var endY = tilfeldigTall(window.innerHeight * 0.2, window.innerHeight);
+
+			var startX = tilfeldigTall(1, endX * 0.8);
+			var startY = tilfeldigTall(1, endY * 0.8);
+			var bredde = endX - startX;
+			var høyde = endY - startY;
+			var farge = tilfeldigFarge();
+			var divHtml = '<div style="' +
+				delAvStylePx('left', startX) +
+				delAvStylePx('top', startY) +
+				delAvStylePx('width', bredde) +
+				delAvStylePx('height', høyde) +
+				delAvStyle('background-color', farge) +
+				'">' +
+				tilfeldigOrd() +
+				'</div>';
+			document.write(divHtml);
+			if (Math.random() < 0.9) tilfeldigFirkant();
+		}
+
+		function delAvStylePx(navn, verdi) {
+			return delAvStyle(navn, verdi + 'px');
+		}
+
+		function delAvStyle(navn, verdi) {
+			return navn + ':' + verdi + ';';
+		}
+
+		function tilfeldigFarge() {
+			return '#' +
+				tilfeldigTallEllerBokstavABCDEF() +
+				tilfeldigTallEllerBokstavABCDEF() +
+				tilfeldigTallEllerBokstavABCDEF() +
+				tilfeldigTallEllerBokstavABCDEF() +
+				tilfeldigTallEllerBokstavABCDEF() +
+				tilfeldigTallEllerBokstavABCDEF();
+		}
+
+		function tilfeldigTallEllerBokstavABCDEF() {
+			var tall = tilfeldigTall(0, 15);
+			if (tall < 10) return tall;
+			const charCodeA = 'a'.charCodeAt(0);
+			return String.fromCharCode(tall - 10 + charCodeA);
+		}
+
+		function tilfeldigBokstav(giVokal) {
+			if (giVokal == true) {
+				var tall = tilfeldigTall(0, 8);
+				if (tall === 0) return "a";
+				if (tall === 1) return "e";
+				if (tall === 2) return "i";
+				if (tall === 3) return "o";
+				if (tall === 4) return "u";
+				if (tall === 5) return "y";
+				if (tall === 6) return "æ";
+				if (tall === 7) return "ø";
+				if (tall === 8) return "å";
+				return "Noe gikk galt (Vokal)"; // fallback i tilfelle noe gikk galt
+			}
+			// Hvis giVokal == false kjører dette
+
+			// kjører til 25 istedet for 28 for å ikke ta med æ,ø,å da de er på
+			// 	slutten av alfabetet og også ta høyde for voalene vi "hopper over"
+			var tall = tilfeldigTall(0, 19);
+			const charCodeA = 'a'.charCodeAt(0);
+			// Legger til på tall for å "hoppe over" vokalene
+			if (tall >= 0) tall++;
+			if (tall >= 4) tall++;
+			if (tall >= 8) tall++;
+			if (tall >= 14) tall++;
+			if (tall >= 20) tall++;
+			if (tall >= 24) tall++;
+			if (tall > 25 || tall < 0) return "Noe gikk galt (Konsonant)";
+			return String.fromCharCode(tall + charCodeA);
+		}
+
+		function tilfeldigOrd() {
+			return tilfeldigBokstav(false) + tilfeldigBokstav(true) + tilfeldigBokstav(false) + tilfeldigBokstav(true) + tilfeldigBokstav(false);
+		}
+
+		function tilfeldigTall(minimum, maksimum) {
+			return minimum + Math.floor(Math.random() * (maksimum - minimum + 1));
+		}
+	</script>
+</body>
+
+</html>
