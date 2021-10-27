@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uke 1: Del 9</title>
+
+    <style>
+        .redBackground {
+            background-color: red;
+        }
+        .greenText {
+            color: green;
+        }
+        .underline{
+            text-decoration: underline;
+        }
+        .italic{
+           font-style: italic; 
+        }
+        .bold{
+            font-weight: bold;
+        }
+        .selectedStyle{
+            border: solid black 1px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mainText" onclick="select(this)">Bla bla bla</div>
+    <div id="secondaryText" onclick="select(this)">Ha ha ha ha</div>
+    <input id="redBackgroundCheckbox" type="checkbox" onchange="toggleRedBackground()"/><span>Rød bakgrunn</span><br/>
+    <input id="greenTextCheckbox" type="checkbox" onchange="toggleGreenText()" /><span>Grønn text</span><br/>
+    <input id="underlineCheckbox" type="checkbox" onchange="toggleUnderline()" /><span>Strek under</span><br/>
+    <input id="italicCheckbox" type="checkbox" onchange="toggleItalicStyle()" /><span>Kursiv</span><br/>
+    <input id="boldCheckbox" type="checkbox" onchange="toggleBold()" /><span>Fet text</span><br/>
+
+
+    <script>
+        var selectedElement = document.getElementById("mainText");
+
+        select(selectedElement);
+
+        function select(element){
+            selectedElement.style.border = "";
+            element.style.border = "1px solid black";
+            selectedElement = element;
+						fetchCheckboxes();
+        }
+        function toggleRedBackground() {
+            var isChecked = document.getElementById('redBackgroundCheckbox').checked;
+            selectedElement.classList.toggle('redBackground', isChecked);
+        }
+        function toggleGreenText() {
+            var isChecked = document.getElementById('greenTextCheckbox').checked;
+            selectedElement.classList.toggle('greenText', isChecked);
+        }
+        function toggleUnderline() {
+            var isChecked = document.getElementById('underlineCheckbox').checked;
+            selectedElement.classList.toggle('underline', isChecked);
+        }
+        function toggleItalicStyle() {
+            var isChecked = document.getElementById('italicCheckbox').checked;
+            selectedElement.classList.toggle('italic', isChecked);
+        }
+        function toggleBold() {
+            var isChecked = document.getElementById('boldCheckbox').checked;
+            selectedElement.classList.toggle('bold', isChecked);
+        }
+
+				function fetchCheckboxes(){
+					document.getElementById("redBackgroundCheckbox").checked = selectedElement.classList.contains("redBackground")
+					document.getElementById("greenTextCheckbox").checked = selectedElement.classList.contains("greenText")
+					document.getElementById("underlineCheckbox").checked = selectedElement.classList.contains("underline")
+					document.getElementById("italicCheckbox").checked = selectedElement.classList.contains("italic")
+					document.getElementById("boldCheckbox").checked = selectedElement.classList.contains("bold")
+				}
+    </script>
+</body>
+
+</html>
