@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<div id="app"></div>
+
+	<script>
+		// Model
+		var addDiv = document.getElementById("app");
+
+		var infoText = "Gjør ett valg på hver linje:";
+		var missingText = "";
+
+		var bunn1Checked = "";
+		var bunn2Checked = "";
+		
+		var fyll1Checked = "";
+		var fyll2Checked = "";
+		var fyll3Checked = "";
+		var fyll4Checked = "";
+		
+		var size1Checked = "";
+		var size2Checked = "";
+		var size3Checked = "";
+		var size4Checked = "";
+		
+		var shape1Checked = "";
+		var shape2Checked = "";
+		var shape3Checked = "";
+
+		var buttonDisabled = "disabled";
+
+		var bunn = "";
+		var fyll = "";
+		var size = "";
+		var shape = "";
+
+		// Control
+		function changeChoice(element, type) {
+			if (type == 0) bunn = element.value;
+			if (type == 1) fyll = element.value;
+			if (type == 2) size = element.value;
+			if (type == 3) shape = element.value;
+			updateInfo();
+		}
+
+		function updateInfo() {
+			if (bunn == "" && fyll == "" && size == "" && shape == "") {
+				infoText = "Gjør ett valg på hver linje:";
+			}
+			else if (bunn != "" && fyll != "" && size != "" && shape != "") {
+				infoText = "Du har fylt ut alt og er klar til å bestille!";
+				buttonDisabled = "";
+			}
+			else {
+				infoText = "Du har ikke valgt:<br/><ul>";
+				if (bunn == "") infoText += "<li>Bunn</li>";
+				if (fyll == "") infoText += "<li>fyll</li>";
+				if (size == "") infoText += "<li>size</li>";
+				if (shape == "") infoText += "<li>shape</li>";
+				infoText += "</ul>";
+			}
+
+
+			bunn1Checked = "";
+			bunn2Checked = "";
+			if (bunn == "tykk") bunn1Checked = "checked";
+			else if (bunn == "tynn") bunn2Checked = "checked";
+
+			fyll1Checked = "";
+			fyll2Checked = "";
+			fyll3Checked = "";
+			fyll4Checked = "";
+			if (fyll == "taco") fyll1Checked = "checked";
+			else if (fyll == "kylling") fyll2Checked = "checked";
+			else if (fyll == "pepperoni") fyll3Checked = "checked";
+			else if (fyll == "biff") fyll4Checked = "checked";
+
+			size1Checked = "";
+			size2Checked = "";
+			size3Checked = "";
+			size4Checked = "";
+			if (size == "stor") size1Checked = "checked";
+			else if (size == "medium") size2Checked = "checked";
+			else if (size == "liten") size3Checked = "checked";
+			else if (size == "stykke") size4Checked = "checked";
+
+			shape1Checked == "";
+			shape2Checked == "";
+			shape3Checked == "";
+			if (shape == "rund") shape1Checked = "checked";
+			else if (shape == "firkantet") shape2Checked = "checked";
+			else if (shape == "pizzamide") shape3Checked = "checked";
+
+			console.log(bunn);
+			console.log(fyll);
+			console.log(size);
+			console.log(shape);
+
+			updateView();
+		}
+
+		function bestill(){
+			alert("Din ordre er bestilt: " + bunn + ", " + fyll + ", " + size + ", " + shape);
+			bunn = "";
+			fyll = "";
+			size = "";
+			shape = "";
+			buttonDisabled = "disabled";
+			updateInfo();
+		}
+
+		// View
+		updateView();
+		function updateView() {
+			addDiv.innerHTML = `
+							<p>Ferdighet 9f - Valgsetninger - Sammenligne flere ting på en gang (både og og eller sammen)</p>
+							<h3>Pizza-bestilling</h3>
+							${infoText}
+							<ul>
+							${missingText}
+							</ul>
+							</br>
+							Bunn:
+							<input type="radio" name="bunn" onchange="changeChoice(this, 0)" ${bunn1Checked} value="tykk" />Tykk
+							<input type="radio" name="bunn" onchange="changeChoice(this, 0)" ${bunn2Checked} value="tynn" />Tynn
+							<br />
+							Fyll:
+							<input type="radio" name="fyll" onchange="changeChoice(this, 1)" ${fyll1Checked} value="taco" />Taco
+							<input type="radio" name="fyll" onchange="changeChoice(this, 1)" ${fyll2Checked} value="kylling" />Kylling
+							<input type="radio" name="fyll" onchange="changeChoice(this, 1)" ${fyll3Checked} value="pepperoni" />Pepperoni 
+							<input type="radio" name="fyll" onchange="changeChoice(this, 1)" ${fyll4Checked} value="biff" />Biff
+							<br />
+							Størrelse:
+							<input type="radio" name="size" onchange="changeChoice(this, 2)" ${size1Checked} value="stor" />Stor
+							<input type="radio" name="size" onchange="changeChoice(this, 2)" ${size2Checked} value="medium" />Medium
+							<input type="radio" name="size" onchange="changeChoice(this, 2)" ${size3Checked} value="liten" />Liten 
+							<input type="radio" name="size" onchange="changeChoice(this, 2)" ${size4Checked} value="stykke" />Stykke
+							<br />
+							Form:
+							<input type="radio" name="shape" onchange="changeChoice(this, 3)" ${shape1Checked} value="rund" />Rund
+							<input type="radio" name="shape" onchange="changeChoice(this, 3)" ${shape2Checked} value="firkantet" />Firkantet
+							<input type="radio" name="shape" onchange="changeChoice(this, 3)" ${shape3Checked} value="pizzamide" />Pizzamide
+							<br />
+							<button name="bestill" ${buttonDisabled} onclick="bestill()">Bestill</button>
+							
+			`
+		}
+	</script>
+</body>
+
+</html>

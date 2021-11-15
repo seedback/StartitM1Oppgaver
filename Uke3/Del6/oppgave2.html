@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<div id="app"></div>
+
+	<script>
+		// Model
+		var appDiv = document.getElementById("app");
+
+		var code = "";
+		var correctCode = "1030";		 // Slaget på stiklestad
+		var isCodeCorrect = false;
+
+		// Control
+		function addToCode(num){
+			code += num;
+			if (code == correctCode){
+				isCodeCorrect = true;
+			}
+			else isCodeCorrect = false;
+			updateView();
+		}
+
+		// View
+		updateView();
+		function updateView() {
+			appDiv.innerHTML = `
+				<h3 style="min-height:calc(1em + 4px)">${code}</h3>
+				<table>
+					<tr>
+						<td>
+							<button onclick="addToCode(this.innerHTML)">1</button>
+						</td>
+						<td>
+							<button onclick="addToCode(this.innerHTML)">2</button>
+						</td>
+						<td>
+							<button onclick="addToCode(this.innerHTML)">3</button>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<button onclick="addToCode(this.innerHTML)">4</button>
+						</td>
+						<td>
+							<button onclick="addToCode(this.innerHTML)">5</button>
+						</td>
+						<td>
+							<button onclick="addToCode(this.innerHTML)">6</button>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<button onclick="addToCode(this.innerHTML)">7</button>
+						</td>
+						<td>
+							<button onclick="addToCode(this.innerHTML)">8</button>
+						</td>
+						<td>
+							<button onclick="addToCode(this.innerHTML)">9</button>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<button onclick="addToCode(this.innerHTML)">*</button>
+						</td>
+						<td>
+							<button onclick="addToCode(this.innerHTML)">0</button>
+						</td>
+						<td>
+							<button onclick="addToCode(this.innerHTML)">#</button>
+						</td>
+					</tr>
+				</table>
+			`
+			if (isCodeCorrect) {
+				appDiv.innerHTML += `
+					<h2 style="color:green">Åpen</h2>
+				`
+			}
+		}
+	</script>
+</body>
+
+</html>

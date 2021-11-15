@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Søke Start IT</title>
+  <style>
+    div.numContainer {
+      color: blue;
+      background-color: azure;
+      padding: 10px;
+      margin: 10px;
+      border: solid cornflowerblue 5px;
+      width: 20px;
+      height: 20px;
+      float: left;
+    }
+    
+    .grid {
+      display: grid;
+      grid: 1fr 1fr 1fr/1fr 1fr 1fr;
+      width: 0px;
+    }
+    
+    div.førstPåLinja {
+      clear: left;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <script>
+    // Model
+    var numbers = [3, 5, 6, 8, 1, 0, 2, 4, 7];
+    var isDone = false;
+
+    // View
+    updateView();
+
+    function updateView() {
+      let html = '<div class="grid">';
+
+      for (let i = 0; i < numbers.length; i++) {
+        html += (numbers[i] === 0) ? `<div class="numContainer"></div>` : `<div class="numContainer" onclick="clickHandler(this)">${numbers[i]}</div>`;
+      }
+
+      if (isDone) {
+        html += `<div style="background-color: lightgreen">Riktig!</div>`;
+      }
+
+      document.getElementById("app").innerHTML = html;
+    }
+
+    // Controler
+    function clickHandler(element) {
+      let clickedValue = element.innerHTML;
+      let clickedIndex = 0;
+
+      for (clickedIndex = 0; clickedIndex < numbers.length; clickedIndex++) {
+        if (numbers[clickedIndex] == element.innerHTML) break;
+      }
+
+      if (Math.floor(clickedIndex / 3) == 0) { // then first row
+        if (clickedIndex % 3 == 0) { // then first col
+          if (numbers[clickedIndex + 1] == 0) swapInNumbers(clickedIndex, clickedIndex + 1);
+          if (numbers[clickedIndex + 3] == 0) swapInNumbers(clickedIndex, clickedIndex + 3);
+        }
+        if (clickedIndex % 3 == 1) { // then second col
+          if (numbers[clickedIndex - 1] == 0) swapInNumbers(clickedIndex, clickedIndex - 1);
+          if (numbers[clickedIndex + 1] == 0) swapInNumbers(clickedIndex, clickedIndex + 1);
+          if (numbers[clickedIndex + 3] == 0) swapInNumbers(clickedIndex, clickedIndex + 3);
+
+        }
+        if (clickedIndex % 3 == 2) { // then first col
+          if (numbers[clickedIndex - 1] == 0) swapInNumbers(clickedIndex, clickedIndex - 1);
+          if (numbers[clickedIndex + 3] == 0) swapInNumbers(clickedIndex, clickedIndex + 3);
+        }
+      }
+      if (Math.floor(clickedIndex / 3) == 1) { // then second row
+        if (clickedIndex % 3 == 0) { // then first col
+          if (numbers[clickedIndex - 3] == 0) swapInNumbers(clickedIndex, clickedIndex - 3);
+          if (numbers[clickedIndex + 1] == 0) swapInNumbers(clickedIndex, clickedIndex + 1);
+          if (numbers[clickedIndex + 3] == 0) swapInNumbers(clickedIndex, clickedIndex + 3);
+        }
+        if (clickedIndex % 3 == 1) { // then second col
+          if (numbers[clickedIndex - 3] == 0) swapInNumbers(clickedIndex, clickedIndex - 3);
+          if (numbers[clickedIndex - 1] == 0) swapInNumbers(clickedIndex, clickedIndex - 1);
+          if (numbers[clickedIndex + 1] == 0) swapInNumbers(clickedIndex, clickedIndex + 1);
+          if (numbers[clickedIndex + 3] == 0) swapInNumbers(clickedIndex, clickedIndex + 3);
+
+        }
+        if (clickedIndex % 3 == 2) { // then first col
+          if (numbers[clickedIndex - 3] == 0) swapInNumbers(clickedIndex, clickedIndex - 3);
+          if (numbers[clickedIndex - 1] == 0) swapInNumbers(clickedIndex, clickedIndex - 1);
+          if (numbers[clickedIndex + 3] == 0) swapInNumbers(clickedIndex, clickedIndex + 3);
+        }
+      }
+      if (Math.floor(clickedIndex / 3) == 2) { // then third row
+        if (clickedIndex % 3 == 0) { // then first col
+          if (numbers[clickedIndex - 3] == 0) swapInNumbers(clickedIndex, clickedIndex - 3);
+          if (numbers[clickedIndex + 1] == 0) swapInNumbers(clickedIndex, clickedIndex + 1);
+        }
+        if (clickedIndex % 3 == 1) { // then second col
+          if (numbers[clickedIndex - 3] == 0) swapInNumbers(clickedIndex, clickedIndex - 3);
+          if (numbers[clickedIndex - 1] == 0) swapInNumbers(clickedIndex, clickedIndex - 1);
+          if (numbers[clickedIndex + 1] == 0) swapInNumbers(clickedIndex, clickedIndex + 1);
+
+        }
+        if (clickedIndex % 3 == 2) { // then first col
+          if (numbers[clickedIndex - 3] == 0) swapInNumbers(clickedIndex, clickedIndex - 3);
+          if (numbers[clickedIndex - 1] == 0) swapInNumbers(clickedIndex, clickedIndex - 1);
+        }
+      }
+
+      if (numbers[0] == 1 && numbers[1] == 2 && numbers[2] == 3 &&
+        numbers[3] == 4 && numbers[4] == 5 && numbers[5] == 6 &&
+        numbers[6] == 7 && numbers[7] == 8 && numbers[8] == 0) isDone = true;
+      else isDone = false;
+
+      console.log(isDone);
+      updateView();
+    }
+
+    // Helper functions
+    function swapInNumbers(indexA, indexB) {
+      let temp = numbers[indexA];
+      numbers[indexA] = numbers[indexB];
+      numbers[indexB] = temp;
+    }
+  </script>
+
+
+  <!--<div id="r1k1" onclick="trykk(this, 'r2k1', 'r1k2', '_', '_')">7</div>
+  <div id="r1k2" onclick="trykk(this, 'r1k1', 'r2k2','r1k3')">1</div>
+  <div id="r1k3" onclick="trykk(this, 'r1k2', 'r2k3')">2</div>
+  <div id="r2k1" class="førstPåLinja" onclick="trykk(this, 'r2k2', 'r1k1', 'r3k1')">5</div>
+  <div id="r2k2" onclick="trykk(this, 'r2k1','r1k2','r2k3','r3k2')"></div>
+  <div id="r2k3" onclick="trykk(this, 'r1k3','r2k2','r3k3')">3</div>
+  <div id="r3k1" class="førstPåLinja" onclick="trykk(this, 'r2k1','r3k2' )">8</div>
+  <div id="r3k2" onclick="trykk(this, 'r3k1', 'r2k2', 'r3k3')">4</div>
+  <div id="r3k3" onclick="trykk(this, 'r3k2', 'r2k3' )">6</div>
+  <script>
+    function trykk(tagElement, alt1, alt2, alt3, alt4) {
+      if (document.getElementById(alt1).innerHTML == '') {
+        document.getElementById(alt1).innerHTML = tagElement.innerHTML;
+        tagElement.innerHTML = '';
+
+      }
+      if (document.getElementById(alt2).innerHTML == '') {
+        document.getElementById(alt2).innerHTML = tagElement.innerHTML;
+        tagElement.innerHTML = '';
+      }
+
+      if (document.getElementById(alt3).innerHTML == '') {
+        document.getElementById(alt3).innerHTML = tagElement.innerHTML;
+        tagElement.innerHTML = '';
+      }
+      if (document.getElementById(alt4).innerHTML == '') {
+        document.getElementById(alt4).innerHTML = tagElement.innerHTML;
+        tagElement.innerHTML = '';
+      }
+    }-->
+
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+</head>
+
+<body>
+	<div id="app"></div>
+
+	<script>
+		// Model
+		var appDiv = document.getElementById("app");
+		var infoTxt = "";
+		var txt1 = "Per";
+		var txt2 = "Pål";
+		var txt3 = "Espen";
+
+		// Controler
+		findFirst();
+
+		function findFirst() {
+			infoTxt = '';
+
+			if (txt1 == txt2) infoTxt += 'Tekst 1 og 2 er like<br/>';
+			if (txt1 != txt2) infoTxt += '<del>Tekst 1 og 2 er like</del><br/>';
+
+			//if (txt1 == txt2) infoTxt += 'Tekst 1 og 2 er like<br/>';
+			//else infoTxt += '<del>Tekst 1 og 2 er like</del><br/>';
+
+			if (txt1 == txt3) infoTxt += 'Tekst 1 og 3 er like<br/>';
+			if (txt1 != txt3) infoTxt += '<del>Tekst 1 og 3 er like</del><br/>';
+			if (txt3 == txt2) infoTxt += 'Tekst 2 og 3 er like<br/>';
+			if (txt3 != txt2) infoTxt += '<del>Tekst 2 og 3 er like</del><br/>';
+
+			infoTxt += 'Om vi sorterer de tre tekstene, er denne den første:<br/>';
+			if (txt1 <= txt2) {
+				if (txt3 <= txt1) infoTxt += txt3;
+				else infoTxt += txt1;
+			} else {
+				if (txt3 <= txt2) infoTxt += txt3;
+				else infoTxt += txt2;
+			}
+			updateView();
+		}
+
+		// View
+		updateView();
+		function updateView() {
+			appDiv.innerHTML = `
+				<p>Ferdighet 9b - Valgsetninger - Sammenligne to tekster</p>
+				<div>${infoTxt}</div>
+				<p>Endre på tekstene! (Prøv også å fylle ut tall: 11, 101, 102)</p>
+				<input type="text"
+								onload="txt1 = this.value"
+								onchange="txt1 = this.value; findFirst()"
+								value="${txt1}" />
+				<br />
+				<input type="text"
+								onload="txt2 = this.value"
+								onchange="txt2 = this.value; findFirst()"
+								value="${txt2}" />
+				<br />
+				<input type="text"
+								onload="txt3 = this.value"
+								onchange="txt3 = this.value; findFirst()"
+								value="${txt3}" />
+				<br />
+			`
+		}
+	</script>
+</body>
+
+</html>

@@ -13,15 +13,20 @@
 
 	<input id="sizeSlider" type="range" min="100" max="500" step="10"
 		oninput="showDiv()" />
+
 	<br /><input id="textInput" type="text" oninput="showDiv()"
 		value="endre teksten!" />
+
 	<select id="colorChooser" onchange="showDiv()">
 		<option value="red">Red color</option>
 		<option selected value="green">Green color</option>
 		<option value="blue">Blue color</option>
 	</select>
-	<div id="resultat"></div>
+
+	<div id="resultat"><div style="background-color: red; width: 460px; height: 460px;">e</div></div>
+
 	<div id="resultatHtml" style="font-family: monospace"></div>
+
 	<script>
 		var resultatDiv = document.getElementById('resultat');
 		var resultatHtmlDiv = document.getElementById('resultatHtml');

@@ -40,27 +40,32 @@
 
 
     <script>
-        var selectedElement = document.getElementById("mainText");
+        var selectedElement = null;
 
         select(selectedElement);
 
         function select(element){
-            selectedElement.style.border = "";
-            element.style.border = "1px solid black";
-            selectedElement = element;
+					if (selectedElement){
+						selectedElement.style.border = "";
+					}
+					if (element == selectedElement){
+						selectedElement = null;
+					}
+					else{
+						element.style.border = "1px solid black";
+						selectedElement = element;
 						fetchCheckboxes();
+					}
+					
         }
         function toggleRedBackground() {
-            var isChecked = document.getElementById('redBackgroundCheckbox').checked;
-            selectedElement.classList.toggle('redBackground', isChecked);
+            selectedElement.classList.toggle('redBackground');
         }
         function toggleGreenText() {
-            var isChecked = document.getElementById('greenTextCheckbox').checked;
-            selectedElement.classList.toggle('greenText', isChecked);
+            selectedElement.classList.toggle('greenText');
         }
         function toggleUnderline() {
-            var isChecked = document.getElementById('underlineCheckbox').checked;
-            selectedElement.classList.toggle('underline', isChecked);
+            selectedElement.classList.toggle('underline');
         }
         function toggleItalicStyle() {
             var isChecked = document.getElementById('italicCheckbox').checked;

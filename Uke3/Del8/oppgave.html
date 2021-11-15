@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<div id="app" style="color:black;"></div>
+
+	<script>
+		// Model
+		var appDiv = document.getElementById("app");
+		var chosenBgColor = "black";
+		var chosenColor = "white";
+
+		var selected1 = "";
+		var selected2 = "";
+		var selected3 = "";
+		var selected4 = "";
+		var selected5 = "";
+
+		// Controler
+		function changeColor(element){
+			chosenBgColor = element.value;
+			if(chosenBgColor == "black" || chosenBgColor == "darkblue"){
+				chosenColor = "white";
+			}
+			else{
+				chosenColor = "black";
+			}
+
+			// Workaround for at det ikke altid skulle stå "Svart" i dropdown boksen
+			selected1 = "";
+			selected2 = "";
+			selected3 = "";
+			selected4 = "";
+			selected5 = "";
+			if (chosenBgColor == "black"){
+				selected1 = "selected";
+			}
+			if (chosenBgColor == "darkblue"){
+				selected2 = "selected";
+			}
+			if (chosenBgColor == "lightgrey"){
+				selected3 = "selected";
+			}
+			if (chosenBgColor == "lightgreen"){
+				selected4 = "selected";
+			}
+			if (chosenBgColor == "lightcoral"){
+				selected5 = "selected";
+			}
+
+			updateView();
+		}
+
+		// View
+		updateView();
+		function updateView() {
+			appDiv.innerHTML = `
+				<select onchange="changeColor(this)">
+					<option value="black" ${selected1}>Svart</option>
+					<option value="darkblue" ${selected2}>Mørk blå</option>
+					<option value="lightgrey" ${selected3}>Lys grå</option>
+					<option value="lightgreen" ${selected4}>Lys grøn</option>
+					<option value="lightcoral" ${selected5}>Lys rød</option>
+				</select>
+				<div style="background-color:${chosenBgColor}; color: ${chosenColor};">a</div>
+			`;
+		}
+	</script>
+</body>
+
+</html>

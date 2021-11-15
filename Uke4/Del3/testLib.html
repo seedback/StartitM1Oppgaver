@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Test Suite</title>
+<link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.17.2.css">
+
+<body>
+  <div id="qunit"></div>
+  <div id="qunit-fixture"></div>
+  <script src="https://code.jquery.com/qunit/qunit-2.17.2.js"></script>
+  <script src="lib.js"></script>
+
+  <script>
+    QUnit.test("checkEMail - 'x.a@b.c'", function(assert) {
+      const actual = checkEMail('x.a@b.c');
+      const expected = true;
+      assert.equal(actual, expected);
+    });
+
+    QUnit.test("checkEMail - 'x.ab.c'", function(assert) {
+      const actual = checkEMail('x.ab.c');
+      const expected = false;
+      assert.equal(actual, expected);
+    });
+
+    QUnit.test("checkEMail - 'a@b.c'", function(assert) {
+      const actual = checkEMail('a@b.c');
+      const expected = false;
+      assert.equal(actual, expected);
+    });
+
+    QUnit.test("checkEMail - 'x.a@b'", function(assert) {
+      const actual = checkEMail('x.a@b');
+      const expected = false;
+      assert.equal(actual, expected);
+    });
+
+    QUnit.test("checkEMail - 'x.a@b .c'", function(assert) {
+      const actual = checkEMail('x.a@b .c');
+      const expected = false;
+      assert.equal(actual, expected);
+    });
+
+    QUnit.test("checkEMail - ''", function(assert) {
+      const actual = checkEMail('');
+      const expected = false;
+      assert.equal(actual, expected);
+    });
+
+    QUnit.test("checkEMail - null", function(assert) {
+      const actual = checkEMail(null);
+      const expected = false;
+      assert.equal(actual, expected);
+    });
+
+    QUnit.test("checkEMail - undefined", function(assert) {
+      const actual = checkEMail(undefined);
+      const expected = false;
+      assert.equal(actual, expected);
+    });
+  </script>
+</body>

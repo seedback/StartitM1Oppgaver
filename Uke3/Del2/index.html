@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<div id="app"></div>
+
+	<script>
+		// Model
+		var appDiv = document.getElementById("app");
+		var answer1Text = "Freia Melkesjokolade";
+		var answer2Text = "Freia Fruktnøtt";
+		var answer3Text = "Nidar Melkesjokolade";
+
+
+		//Controler
+		function answer(choice) {
+			console.log("I was here", choice);
+			switch (choice) {
+				case 1:
+					answer1Text += " : Feil svar...";
+					break;
+				case 2:
+					answer2Text += " : Riktig svar!!!";
+					break;
+				case 3:
+					answer3Text += " : Feil svar...";
+					break;
+			}
+			updateDiv();
+		}
+
+
+		// View
+		updateDiv();
+		function updateDiv() {
+			appDiv.innerHTML = `
+							<h1>Subjektiv Sjokolade Quiz</h1>
+							<h3>Hvilken sjokolade er best?</h3>
+							<p onclick="answer(1)">${answer1Text}</p>
+							<p onclick="answer(2)">${answer2Text}</p>
+							<p onclick="answer(3)">${answer3Text}</p>
+				`;
+		}
+	</script>
+</body>
+
+</html>
