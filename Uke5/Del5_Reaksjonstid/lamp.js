@@ -11,10 +11,9 @@ updateView();
 function updateView() {
   let html = `<div class="lampGrid">`;
 
-  for (let i = 0; i < 25; i++) {
-    html += `<div class="lamp ${(selectedLampIndex == i) ? 'lightOn" onclick="choseLamp()"' : '"'} ></div>`
-  }
-
+  for (let i = 0; i < 25; i++) html += `
+		<div class="lamp ${(selectedLampIndex == i) ? 'lightOn" onclick="choseLamp()"' : '"'} ></div>
+	`
   html += `</div><div>${spentSeconds}</div>`
 
   document.getElementById("app").innerHTML = html;

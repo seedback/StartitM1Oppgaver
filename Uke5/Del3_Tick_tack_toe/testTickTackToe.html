@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Test Suite</title>
+<link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.17.2.css">
+
+<body>
+  <div id="qunit"></div>
+  <div id="qunit-fixture"></div>
+  <script src="https://code.jquery.com/qunit/qunit-2.17.2.js"></script>
+  <script src="tickTackToe.js"></script>
+  <script>
+    var board;
+
+    function showBoard() {}
+
+    QUnit.module('checkCoordsEmpty()', function() {
+      QUnit.test('Setting X on an empty index', function(assert) {
+        board = ['', '', '', '', '', '', '', '', ''];
+        assert.equal(checkCoordsEmpty(5), true, "Set 'x' successfully");
+      });
+      QUnit.test('Setting X on a filled index', function(assert) {
+        board = ['', '', '', '', '', 'x', '', '', ''];
+        assert.equal(checkCoordsEmpty(5), false, "Index was already filled");
+      });
+      QUnit.test('Setting X on an invalid (negative) index', function(assert) {
+        board = ['', '', '', '', '', '', '', '', ''];
+        assert.equal(checkCoordsEmpty(-1), false, "Index was invalid");
+      });
+    });
+
+    QUnit.module('setRandomO()', function() {
+      QUnit.test("setting random 'o' in an empty table", function(assert) {
+        board = ['', '', '', '', '', '', '', '', ''];
+        assert.equal(setRandomO(), true, "'o' randomly set successfully");
+        assert.notPropEqual(board, ['', '', '', '', '', '', '', '', ''], "board[] confirmed correct");
+      });
+      QUnit.test("setting random 'o' in a filled table", function(assert) {
+        board = ['x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x'];
+        assert.equal(setRandomO(), false, "'o' randomly set failed");
+        assert.notPropEqual(board, ['', '', '', '', '', '', '', '', ''], "board[] confirmed correct");
+      });
+    });
+
+    QUnit.module('checkWinning()', function() {
+      QUnit.test("Checking all possible wins for 'x'", function(assert) {
+        board = ['x', 'x', 'x', '', '', '', '', '', ''];
+        assert.equal(checkWinning(), 'x', 'testing first row');
+        board = ['', '', '', 'x', 'x', 'x', '', '', ''];
+        assert.equal(checkWinning(), 'x', 'testing second row');
+        board = ['', '', '', '', '', '', 'x', 'x', 'x'];
+        assert.equal(checkWinning(), 'x', 'testing third row');
+        board = ['x', '', '', 'x', '', '', 'x', '', ''];
+        assert.equal(checkWinning(), 'x', 'testing first column');
+        board = ['', 'x', '', '', 'x', '', '', 'x', ''];
+        assert.equal(checkWinning(), 'x', 'testing second column');
+        board = ['', '', 'x', '', '', 'x', '', '', 'x'];
+        assert.equal(checkWinning(), 'x', 'testing third column');
+
+        board = ['', '', 'x', '', 'x', '', 'x', '', ''];
+        assert.equal(checkWinning(), 'x', 'testing diagonal top-right to bottom-left');
+        board = ['x', '', '', '', 'x', '', '', '', 'x'];
+        assert.equal(checkWinning(), 'x', 'testing diagonal top-left to bottom-right');
+      });
+      QUnit.test("Checking all possible wins for 'o'", function(assert) {
+        board = ['o', 'o', 'o', '', '', '', '', '', ''];
+        assert.equal(checkWinning(), 'o', 'testing first row');
+        board = ['', '', '', 'o', 'o', 'o', '', '', ''];
+        assert.equal(checkWinning(), 'o', 'testing second row');
+        board = ['', '', '', '', '', '', 'o', 'o', 'o'];
+        assert.equal(checkWinning(), 'o', 'testing third row');
+        board = ['o', '', '', 'o', '', '', 'o', '', ''];
+        assert.equal(checkWinning(), 'o', 'testing first column');
+        board = ['', 'o', '', '', 'o', '', '', 'o', ''];
+        assert.equal(checkWinning(), 'o', 'testing second column');
+        board = ['', '', 'o', '', '', 'o', '', '', 'o'];
+        assert.equal(checkWinning(), 'o', 'testing third column');
+
+        board = ['', '', 'o', '', 'o', '', 'o', '', ''];
+        assert.equal(checkWinning(), 'o', 'testing diagonal top-right to bottom-left');
+        board = ['o', '', '', '', 'o', '', '', '', 'o'];
+        assert.equal(checkWinning(), 'o', 'testing diagonal top-left to bottom-right');
+      });
+      QUnit.test("Checking some cases with no winner", function(assert) {
+        board = ['', '', '', '', '', '', '', '', ''];
+        assert.equal(checkWinning(), false, 'testing for an empty board');
+        board = ['x', '', 'x', '', '', '', 'x', '', 'x'];
+        assert.equal(checkWinning(), false, "testing for 'x'-es in the corners");
+        board = ['o', '', 'o', '', '', '', 'o', '', 'o'];
+        assert.equal(checkWinning(), false, "testing for 'o'-s in the corners");
+        board = ['o', 'x', 'o', 'x', '', 'x', 'o', 'x', 'o'];
+        assert.equal(checkWinning(), false, "testing for 'o'-s and 'x'-esaround the outer edge");
+        board = ['o', 'o', '', '', '', 'o', '', '', ''];
+        assert.equal(checkWinning(), false, "testing special case 1");
+        board = ['o', 'o', 'x', 'x', 'x', 'o', '', '', ''];
+        assert.equal(checkWinning(), false, "testing special case 2");
+        board = ['o', 'o', '', 'x', '', 'o', '', 'x', 'x'];
+        assert.equal(checkWinning(), false, "testing special case 1");
+      });
+    })
+  </script>
+</body>
